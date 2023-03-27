@@ -12,6 +12,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
             crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -22,7 +23,7 @@
 </nav>
 <section style="padding: 15px">
     <h5>Search</h5>
-    <form action="/search" method="get">
+    <form action="/list" method="get" class="searchForm">
         <input type="hidden" name="size" value="${pageRequestDTO.size}">
     <div class="form-check">
         <input class="form-check-input" type="checkbox"name="finished">
@@ -47,15 +48,35 @@
         <label for="floatingInput">검색내용</label>
     </div>
     <div class="input-group input-daterange">
-        <input type="date" class="form-control" name="startDate">
+        <input type="date" class="form-control startDate" name="startDate" value="" id="startDate">
         <div class="input-group-addon"></div>
-        <input type="date" class="form-control" name="endDate">
+        <input type="date" class="form-control endDate" name="endDate" value="" id="endDate">
     </div>
     <br>
     <input type="submit" class="btn btn-primary" value="Search">
     <input type="reset" class="btn btn-info" value="Clear">
     </form>
 </section>
+
+<script>
+    $(".searchForm").submit(function () {
+        let startDate = document.getElementById('startDate').value;
+        let endDate = document.getElementById('endDate').value;
+
+
+        if (startDate == '') {
+            alert("시작 날짜를 입력하세요");
+            $('.startDate').focus();
+            return false;
+        }
+        if (endDate == '') {
+            alert("종료 날짜를 입력하세요");
+            $('.endDate').focus();
+            return false;
+        }
+    });
+</script>
+
 <section style="padding: 15px">
 
     <nav class="navbar-expand-lg bg-light">
@@ -121,8 +142,10 @@
             return
         }
         const num = target.getAttribute("data-num")
-        self.location = `/list?page=\${num}` //백틱(` `)을 이용해서 템플릿 처리
-    },false)
+        let params = new URLSearchParams(window.location.search);
+        params.set('page',num);
+        location.href = "/list?" + params;
+    }, false)
 </script>
 </body>
 </html>
