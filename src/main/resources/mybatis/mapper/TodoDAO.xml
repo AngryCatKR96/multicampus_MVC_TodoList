@@ -61,9 +61,8 @@
         SELECT COUNT(tno) FROM tbl_todo
     </select>
 
-    <select id="searchCountDAO" resultType="_int"
-            parameterType="com.multicampus.springboot.dto.PageRequestDTO">
-        select COUNT(tno) from tbl_todo
+    <select id="searchCountDAO" resultType="_int">
+        select count(tno) from tbl_todo
         <where>
             <if test="types != null and types.length > 0">
                 <foreach collection="types" item="type" open="(" close=") " separator=" OR ">
@@ -86,7 +85,6 @@
                 </trim>
             </if>
         </where>
-        order by tno desc limit #{skip}, #{size}
     </select>
 
 
