@@ -76,11 +76,11 @@ public class MyController {
         return "redirect:list";
     }
 
-    @GetMapping("/search")
-    public String search(PageRequestDTO pageRequestDTO, Model model){
-        model.addAttribute("responseDTO", service.search(pageRequestDTO));
-        return "list";
-    }
+//    @GetMapping("/search")
+//    public String search(PageRequestDTO pageRequestDTO, Model model){
+//        model.addAttribute("responseDTO", service.search(pageRequestDTO));
+//        return "list";
+//    }
 
     @GetMapping("/list")
     public void list(@Valid PageRequestDTO pageRequestDTO, BindingResult bindingResult, Model model){
@@ -91,6 +91,7 @@ public class MyController {
 //        }
 
         model.addAttribute("responseDTO", service.getList(pageRequestDTO));
-    }
+        model.addAttribute("responseDTO", service.search(pageRequestDTO));
+}
 
 }
