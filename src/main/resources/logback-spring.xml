@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration>
+    <timestamp key="BY_DATE" datePattern="yyyy-MM-dd"/>
+    <include resource="console-appender.xml"/>
+
+    <root level="info">
+        <appender-ref ref="console"/>
+    </root>
+
+    <logger name="com.multicampus.springboot" level="debug"/>
+    <!-- log4j2-jdbc4 -->
+<!--    <logger name="jdbc" level="OFF" />-->
+<!--    <logger name="jdbc.sqlonly" level="OFF" />-->
+<!--    <logger name="jdbc.sqltiming" level="DEBUG" />-->
+<!--    <logger name="jdbc.resultset" level="OFF" />-->
+<!--    <logger name="jdbc.resultsettable" level="DEBUG" />-->
+<!--    <logger name="jdbc.connection" level="ON" />-->
+    <!-- log4j2-jdbc4 -->
+    <include resource="file-error-appender.xml"/>
+
+</configuration>

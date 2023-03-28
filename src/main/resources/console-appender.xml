@@ -1,0 +1,7 @@
+<included>
+<appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+        <Pattern>[%d{yyyy-MM-dd HH:mm:ss}:%-3relative] %green([%thread]) %highlight(%-3level) %logger{36} %boldWhite([%C.%M:%yellow(%L)]) - %msg%n</Pattern>
+    </encoder>
+</appender>
+</included>
